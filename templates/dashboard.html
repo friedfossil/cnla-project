@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNLA IDS Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ CNLA IDS Dashboard</h1>
+            <p>Real-time Intrusion Detection System</p>
+            <div id="status-badge">🟢 Active</div>
+        </header>
+
+        <section id="stats">
+            <div class="stat-card">
+                <h3>Total Alerts</h3>
+                <span id="total-alerts">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>High Severity</h3>
+                <span id="high-severity">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Last Alert</h3>
+                <span id="last-alert">-</span>
+            </div>
+        </section>
+
+        <section id="alerts-container">
+            <h2>🔔 Live Alerts</h2>
+            <div id="alerts-list">
+                <div class="alert-placeholder">✅ No threats detected. System is secure.</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
