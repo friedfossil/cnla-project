@@ -3,40 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNLA IDS Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>🛡️ Network Intrusion Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🛡️ CNLA IDS Dashboard</h1>
-            <p>Real-time Intrusion Detection System</p>
-            <div id="status-badge">🟢 Active</div>
-        </header>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <div>
+                    <h1>NIDS</h1>
+                    <span class="subtitle">Network Intrusion Detection System</span>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Active</span>
+            </div>
+        </div>
+    </header>
 
-        <section id="stats">
+    <main>
+        <!-- Stats Grid -->
+        <section class="stats-grid">
             <div class="stat-card">
-                <h3>Total Alerts</h3>
-                <span id="total-alerts">0</span>
+                <div class="stat-icon">📦</div>
+                <div>
+                    <h3 id="packet-count">0</h3>
+                    <p>Total Packets</p>
+                </div>
             </div>
             <div class="stat-card">
-                <h3>High Severity</h3>
-                <span id="high-severity">0</span>
+                <div class="stat-icon">🌐</div>
+                <div>
+                    <h3 id="unique-ips">0</h3>
+                    <p>Unique IPs</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Last Alert</h3>
-                <span id="last-alert">-</span>
+            <div class="stat-card alert-stat">
+                <div class="stat-icon">🚨</div>
+                <div>
+                    <h3 id="alert-count">0</h3>
+                    <p>Total Alerts</p>
+                </div>
             </div>
         </section>
 
-        <section id="alerts-container">
-            <h2>🔔 Live Alerts</h2>
-            <div id="alerts-list">
-                <div class="alert-placeholder">✅ No threats detected. System is secure.</div>
+        <!-- Demo Controls -->
+        <section class="controls-section">
+            <h2>🎬 Demonstration Controls</h2>
+            <div class="button-group">
+                <button onclick="simulateAttack('portscan')" class="btn btn-primary">
+                    🔍 Simulate Port Scan
+                </button>
+                <button onclick="simulateAttack('icmpflood')" class="btn btn-warning">
+                    🌊 Simulate ICMP Flood
+                </button>
+                <button onclick="simulateAttack('highrate')" class="btn btn-danger">
+                    🚀 Simulate High Rate
+                </button>
+                <button onclick="clearAlerts()" class="btn btn-secondary">
+                    🗑️ Clear Alerts
+                </button>
+                <button onclick="downloadCSV()" class="btn btn-success">
+                    📥 Download CSV Log
+                </button>
             </div>
         </section>
-    </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <!-- Alerts Table -->
+        <section class="alerts-section">
+            <h2>🚨 Recent Alerts</h2>
+            <div class="table-container">
+                <table id="alerts-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Alert Type</th>
+                            <th>Source IP</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alerts-body">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #666;">
+                                No alerts detected yet. Run a simulation!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Live Log -->
+        <section class="log-section">
+            <h2>📋 Live Activity Log</h2>
+            <div id="log-container">
+                <div class="log-entry log-info">🟢 System started monitoring...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🛡️ Network Intrusion Detection System | All attacks are SIMULATED for demonstration</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
